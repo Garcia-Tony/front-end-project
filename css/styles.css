@@ -1,0 +1,80 @@
+.column-full {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000c4;
+  font-size: 25px;
+}
+
+.column-full p {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body {
+  background-image: url('../images/Designer\ \(16\).png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.search-bar {
+  display: flex;
+  font-size: 30px;
+  justify-content: center;
+  margin-top: 20px;
+  opacity: 0.85;
+}
+
+.image {
+  display: flex;
+  margin-left: 20px;
+  width: 90%;
+  margin-top: 45px;
+  border-radius: 50%;
+  opacity: 0.95;
+}
+
+button {
+  margin-top: 20px;
+  opacity: 0.85;
+}
+
+@media screen and (width >=600px) {
+  .row-two {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (width >=600px) {
+  .image {
+    width: 50%;
+    justify-content: center;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (width >=600px) {
+  .search-slide {
+    justify-content: center;
+  }
+}
+
+@media screen and (width >=600px) {
+  button {
+    font-size: 25px;
+  }
+}
+
+@media screen and (width >=600px) {
+  .search-bar {
+    font-size: 40px;
+  }
+}
+
+#search-reset {
+  cursor: pointer;
+}
