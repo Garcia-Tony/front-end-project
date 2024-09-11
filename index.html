@@ -1,20 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front End Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="row-one">
+          <div class="column-full">
+            <p><b id="search-reset">Search</b></p>
+            <p><b>ScreenVerse</b></p>
+            <p><b>Watchlist</b></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-two">
+        <div class="image">
+          <img
+            id="image"
+            class="image"
+            src="./images/Designer.png"
+            alt="Logo" />
+        </div>
+      </div>
+
+      <div class="search-slide">
+        <form id="search-form">
+          <div class="search-bar">
+            <div>
+              <input
+                type="text"
+                class="search-bar"
+                placeholder="Search here..." />
+            </div>
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </header>
+    <main></main>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
