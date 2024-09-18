@@ -1,3 +1,12 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(126, 205, 231);
+}
+
 .column-full {
   color: white;
   display: flex;
@@ -77,4 +86,8 @@ button {
 
 #search-reset {
   cursor: pointer;
+}
+
+.movie-container {
+  font-size: 20px;
 }
