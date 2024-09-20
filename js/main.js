@@ -51,16 +51,22 @@ async function fetchMovies(query) {
 function viewSwap(viewName) {
     const movieResultsView = document.querySelector('.movie-results-wrapper');
     const searchFormView = document.querySelector('.search-form-wrapper');
+    const logo = document.getElementById('image');
+    const searchBar = document.querySelector('.search-bar');
     if (!movieResultsView || !searchFormView) {
         throw new Error('movieResultsView or searchFormView is null');
     }
     if (viewName === 'movie-results') {
         movieResultsView.classList.remove('hidden');
         searchFormView.classList.add('hidden');
+        logo?.classList.add('hidden');
+        searchBar?.classList.add('hidden');
     }
     else if (viewName === 'search-form') {
         searchFormView.classList.remove('hidden');
         movieResultsView.classList.add('hidden');
+        logo?.classList.remove('hidden');
+        searchBar?.classList.remove('hidden');
     }
     data.view = viewName;
 }
@@ -69,6 +75,7 @@ function displayMovies(movies) {
     const searchTerm = document.getElementById('search-term');
     if (movieContainer && searchTerm) {
         searchTerm.textContent = `Filtering for: ${decodeURIComponent(searchInput.value)}`;
+        searchTerm.classList.remove('hide');
         for (const movie of movies) {
             const movieEntry = renderEntry(movie);
             movieContainer.appendChild(movieEntry);
@@ -79,14 +86,14 @@ function renderEntry(movie) {
     const movieDiv = document.createElement('div');
     movieDiv.className = 'movie';
     const img = document.createElement('img');
-    img.src = movie.poster;
+    img.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
     img.alt = movie.title;
     movieDiv.appendChild(img);
     const title = document.createElement('h3');
     title.textContent = movie.title;
     movieDiv.appendChild(title);
     const description = document.createElement('div');
-    description.textContent = movie.description;
+    description.textContent = movie.overview;
     movieDiv.appendChild(description);
     return movieDiv;
 }

@@ -1,7 +1,7 @@
 interface MovieResult {
   title: string;
-  poster: string;
-  description: string;
+  poster_path: string;
+  overview: string;
 }
 
 interface ApiResponse {
@@ -76,6 +76,8 @@ async function fetchMovies(query: string) {
 function viewSwap(viewName: 'movie-results' | 'search-form'): void {
   const movieResultsView = document.querySelector('.movie-results-wrapper');
   const searchFormView = document.querySelector('.search-form-wrapper');
+    const logo = document.getElementById('image');
+    const searchBar = document.querySelector('.search-bar');
 
   if (!movieResultsView || !searchFormView) {
     throw new Error('movieResultsView or searchFormView is null');
@@ -83,9 +85,14 @@ function viewSwap(viewName: 'movie-results' | 'search-form'): void {
   if (viewName === 'movie-results') {
     movieResultsView.classList.remove('hidden');
     searchFormView.classList.add('hidden');
+    logo?.classList.add('hidden');
+    searchBar?.classList.add('hidden');
   } else if (viewName === 'search-form') {
     searchFormView.classList.remove('hidden');
     movieResultsView.classList.add('hidden');
+    logo?.classList.remove('hidden');
+    searchBar?.classList.remove('hidden');
+
   }
   data.view = viewName;
 }
@@ -96,6 +103,8 @@ function displayMovies(movies: MovieResult[]) {
 
   if (movieContainer && searchTerm) {
     searchTerm.textContent = `Filtering for: ${decodeURIComponent(searchInput.value)}`;
+   searchTerm.classList.remove('hide');
+
 
     for (const movie of movies) {
       const movieEntry = renderEntry(movie);
@@ -109,7 +118,7 @@ function renderEntry(movie: MovieResult): HTMLDivElement {
   movieDiv.className = 'movie';
 
   const img = document.createElement('img');
-  img.src = movie.poster;
+  img.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   img.alt = movie.title;
   movieDiv.appendChild(img);
 
@@ -118,7 +127,7 @@ function renderEntry(movie: MovieResult): HTMLDivElement {
   movieDiv.appendChild(title);
 
   const description = document.createElement('div');
-  description.textContent = movie.description;
+  description.textContent = movie.overview;
   movieDiv.appendChild(description);
 
   return movieDiv;
