@@ -102,9 +102,7 @@ button {
   display: none;
 }
 
-.hidden {
-  display: none;
-}
+
 
  #search-term {
    background-color: #000000c4;
@@ -207,4 +205,27 @@ margin-top: 30px;
     margin-top: -5px;
     font-size: 18px;
   }
+}
+
+
+.no-result {
+font-size: 30px;
+justify-content: center;
+color: rgb(0, 0, 0);
+display: flex;
+padding-top: 175px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (width >=600px) {
+  .no-result {
+      font-size: 50px;
+      justify-content: center;
+      color: rgb(0, 0, 0);
+      padding-top: 150px;
+      display: flex;
+    }
 }

@@ -34,25 +34,12 @@ const option = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MGRhMGI2ZDI1MTRkYjkxY2U1MDYyN2NmOWFmZTY1OSIsIm5iZiI6MTcyNDM4MTI0NS4xMzkyNjQsInN1YiI6IjY2YzdlNzI2NmU2YmVlZjU2MmVhY2E2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V_3OV5zOhM0LohBCLtaEDJNs9kb4geGr6QkZrx2Fvzs',
     },
 };
-async function fetchMovies(query) {
-    try {
-        const response = await fetch(`https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${encodeURIComponent(query)}`, option);
-        if (!response.ok) {
-            throw new Error('HTTP error! Status: ${response.status}');
-        }
-        const fetchedData = (await response.json());
-        displayMovies(fetchedData.results);
-        viewSwap('movie-results');
-    }
-    catch (error) {
-        console.error('Error:', error);
-    }
-}
 function viewSwap(viewName) {
     const movieResultsView = document.querySelector('.movie-results-wrapper');
     const searchFormView = document.querySelector('.search-form-wrapper');
     const logo = document.getElementById('image');
     const searchBar = document.querySelector('.search-bar');
+    const noResult = document.querySelector('.no-result');
     if (!movieResultsView || !searchFormView) {
         throw new Error('movieResultsView or searchFormView is null');
     }
@@ -67,8 +54,10 @@ function viewSwap(viewName) {
         movieResultsView.classList.add('hidden');
         logo?.classList.remove('hidden');
         searchBar?.classList.remove('hidden');
+        noResult?.classList.add('hidden');
     }
     data.view = viewName;
+    writeData();
 }
 function displayMovies(movies) {
     const movieContainer = document.getElementById('movie-container');
@@ -80,6 +69,29 @@ function displayMovies(movies) {
             const movieEntry = renderEntry(movie);
             movieContainer.appendChild(movieEntry);
         }
+    }
+}
+async function fetchMovies(query) {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${encodeURIComponent(query)}`, option);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const fetchedData = (await response.json());
+        const noResult = document.querySelector('.no-result');
+        if (fetchedData.results.length === 0) {
+            noResult?.classList.remove('hidden');
+        }
+        else {
+            noResult?.classList.add('hidden');
+        }
+        displayMovies(fetchedData.results);
+        data.movies = fetchedData.results;
+        writeData();
+        viewSwap('movie-results');
+    }
+    catch (error) {
+        console.error('Error:', error);
     }
 }
 function renderEntry(movie) {

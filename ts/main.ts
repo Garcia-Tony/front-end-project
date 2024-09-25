@@ -3,18 +3,16 @@ interface MovieResult {
   poster_path: string;
   overview: string;
   release_date: string;
-  year: string;
 }
 
 interface ApiResponse {
   results: MovieResult[];
 }
 
+
 const searchReset = document.getElementById('search-reset');
 const searchForm = document.getElementById('search-form') as HTMLFormElement;
-const searchInput = document.querySelector(
-  '.search-bar input',
-) as HTMLInputElement;
+const searchInput = document.querySelector('.search-bar input') as HTMLInputElement;
 
 if (searchReset) {
   searchReset.addEventListener('click', () => {
@@ -31,7 +29,7 @@ if (searchReset) {
       searchTerm.textContent = '';
     }
 
-    viewSwap('search-form');
+        viewSwap('search-form');
   });
 }
 
@@ -57,31 +55,15 @@ const option = {
   },
 };
 
-async function fetchMovies(query: string) {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${encodeURIComponent(query)}`,
-      option,
-    );
-    if (!response.ok) {
-      throw new Error('HTTP error! Status: ${response.status}');
-    }
-
-    const fetchedData = (await response.json()) as ApiResponse;
-    displayMovies(fetchedData.results);
-    viewSwap('movie-results');
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
 function viewSwap(viewName: 'movie-results' | 'search-form'): void {
   const movieResultsView = document.querySelector('.movie-results-wrapper');
   const searchFormView = document.querySelector('.search-form-wrapper');
     const logo = document.getElementById('image');
     const searchBar = document.querySelector('.search-bar');
+    const noResult = document.querySelector('.no-result');
 
-  if (!movieResultsView || !searchFormView) {
+
+  if (!movieResultsView || !searchFormView ) {
     throw new Error('movieResultsView or searchFormView is null');
   }
   if (viewName === 'movie-results') {
@@ -94,26 +76,57 @@ function viewSwap(viewName: 'movie-results' | 'search-form'): void {
     movieResultsView.classList.add('hidden');
     logo?.classList.remove('hidden');
     searchBar?.classList.remove('hidden');
+    noResult?.classList.add('hidden');
+    }
 
-  }
   data.view = viewName;
+  writeData();
 }
 
-function displayMovies(movies: MovieResult[]) {
+function displayMovies(movies: MovieResult[]):void {
   const movieContainer = document.getElementById('movie-container');
   const searchTerm = document.getElementById('search-term');
 
   if (movieContainer && searchTerm) {
     searchTerm.textContent = `Filtering for: ${decodeURIComponent(searchInput.value)}`;
-   searchTerm.classList.remove('hide');
+    searchTerm.classList.remove('hide');
 
 
     for (const movie of movies) {
       const movieEntry = renderEntry(movie);
       movieContainer.appendChild(movieEntry);
+
+  }}}
+
+
+  async function fetchMovies(query: string): Promise<void> {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${encodeURIComponent(query)}`,
+        option,
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const fetchedData  = (await response.json()) as ApiResponse;
+      const noResult = document.querySelector('.no-result');
+
+
+  if (fetchedData.results.length === 0) {
+    noResult?.classList.remove('hidden');
+  } else {
+    noResult?.classList.add('hidden');
+  }
+    displayMovies(fetchedData.results);
+    data.movies = fetchedData.results;
+    writeData();
+
+    viewSwap('movie-results');
+    } catch (error) {
+      console.error('Error:', error);
     }
   }
-}
 
 function renderEntry(movie: MovieResult): HTMLDivElement {
   const movieDiv = document.createElement('div');
