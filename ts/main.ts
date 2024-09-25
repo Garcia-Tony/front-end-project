@@ -2,6 +2,8 @@ interface MovieResult {
   title: string;
   poster_path: string;
   overview: string;
+  release_date: string;
+  year: string;
 }
 
 interface ApiResponse {
@@ -120,15 +122,28 @@ function renderEntry(movie: MovieResult): HTMLDivElement {
   const img = document.createElement('img');
   img.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   img.alt = movie.title;
+  img.className = 'movie-poster';
   movieDiv.appendChild(img);
 
+  const textContent = document.createElement('div');
+  textContent.className = 'text-content';
+
   const title = document.createElement('h3');
+  title.className = 'movie-title';
   title.textContent = movie.title;
-  movieDiv.appendChild(title);
+  textContent.appendChild(title);
+
+  const date = document.createElement('h5');
+  date.className = 'release-date';
+  date.textContent = movie.release_date;
+  textContent.appendChild(date);
 
   const description = document.createElement('div');
+  description.className = 'movie-description';
   description.textContent = movie.overview;
-  movieDiv.appendChild(description);
+  textContent.appendChild(description);
+
+  movieDiv.appendChild(textContent);
 
   return movieDiv;
 }
