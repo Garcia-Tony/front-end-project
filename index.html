@@ -1,20 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front End Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+       <div class="row-one">
+      <div class="column-full">
+     <p><a id="search-reset" href="#"><b>Search</b></a></p>
+      <p><b>ScreenVerse</b></p>
+     <p><a href="#"><b>Watchlist</b></a></p>
+    </div>
+    </div>
+    </div>
+
+      <div class="row-two">
+        <div class="image">
+          <img
+            id="image"
+            class="image"
+            src="./images/Designer.png"
+            alt="Logo" />
+        </div>
+      </div>
+     </header>
+
+     <section class="search-form-wrapper">
+      <div class="search-slide">
+        <form id="search-form">
+          <div class="search-bar">
+            <div>
+              <input
+                type="text"
+                class="search-bar"
+                placeholder="Search here..." />
+            </div>
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+     </section>
+
+    <main>
+    <section class="movie-results-wrapper hidden">
+
+    <header class="search-results-header">
+    <h2 id="search-term" class="hide">Filtering for: </h2>
+
+
+    </header>
+
+    <div id="movie-container" class="movie-container">
+</div>
+    </section>
+
+<section class="no-result hidden">
+      <p><b>No Results Found</b></p>
+</section>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
