@@ -216,10 +216,6 @@ display: flex;
 padding-top: 175px;
 }
 
-.hidden {
-  display: none;
-}
-
 @media screen and (width >=600px) {
   .no-result {
       font-size: 50px;
@@ -228,4 +224,8 @@ padding-top: 175px;
       padding-top: 150px;
       display: flex;
     }
+}
+
+.hidden {
+  display: none;
 }
