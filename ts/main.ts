@@ -158,6 +158,16 @@ function renderEntry(movie: MovieResult): HTMLDivElement {
   description.textContent = movie.overview;
   textContent.appendChild(description);
 
+
+  starButton.addEventListener('click', () => {
+    const confirmation = document.getElementById(
+      'confirmation',
+    ) as HTMLDialogElement;
+    if (confirmation) {
+      confirmation.showModal();
+    }
+  });
+
   movieDiv.appendChild(textContent);
 
   return movieDiv;
