@@ -238,3 +238,11 @@ h2 {
   position: absolute;
     right: 3%;
 }
+
+@media screen and (width >=600px) {
+  .star-button {
+    size: 40px;
+    margin-left: 1160px;
+    right: 1.5%
+  }
+}
