@@ -233,14 +233,8 @@ h2 {
   height: 50px;
   cursor: pointer;
   padding: 0;
-  margin-left: 225px;
   margin-top: 10px;
+    margin-left: 225px;
   position: absolute;
-}
-
-@media screen and (width >=600px) {
-.star-button {
-  size: 40px;
-margin-left: 1160px;
-}
+    right: 3%;
 }
