@@ -139,6 +139,10 @@ function renderEntry(movie: MovieResult): HTMLDivElement {
   const textContent = document.createElement('div');
   textContent.className = 'text-content';
 
+  const starButton = document.createElement('button');
+  starButton.className = 'star-button';
+  textContent.appendChild(starButton);
+
   const title = document.createElement('h3');
   title.className = 'movie-title';
   title.textContent = movie.title;
