@@ -246,3 +246,46 @@ h2 {
     right: 1.5%
   }
 }
+
+.confirmation {
+  background-color: rgba(255, 255, 255, 0.921);
+  border: none;
+}
+
+
+.confirmation h4 {
+  display: inline-block;
+  width: 100%;
+  color: black;
+  font-size: 60px;
+  padding-top: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: normal;
+  text-align: center;
+
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  padding-left: 170px;
+  padding-right: 160px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 25px;
+  background-color: rgb(104, 104, 104)
+}
+
+
+.confirm {
+  margin-top: 5px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 190px;
+  padding-right: 170px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 25px;
+  background-color: rgb(207, 207, 207)
+}
